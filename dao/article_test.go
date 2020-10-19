@@ -11,3 +11,8 @@ func testArticlePage(t *testing.T) {
 		fmt.Println("article=", article)
 	}
 }
+
+func TestArticleCount(t *testing.T) {
+	count, _ := ArticleCount()
+	fmt.Println("count = ", count)
+}

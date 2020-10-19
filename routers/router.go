@@ -9,6 +9,6 @@ import (
 func init() {
 	beego.Router("/", &controllers.MainController{})
 	beego.Router("/api/class/all", &controllers.ClassController{}, "get,post:Test")
-	beego.Router("/page", &controllers.ArticleController{}, "*:Page")
-	beego.Router("/api/article/page", &controllers.ArticleController{})
+	beego.Router("/page", &controllers.ArticleController{})
+	beego.Router("/api/article/page", &controllers.ArticleController{}, "*:Page")
 }

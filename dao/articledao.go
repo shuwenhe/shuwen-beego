@@ -5,10 +5,10 @@ import (
 	"github.com/shuwenhe/shuwen-beego/utils"
 )
 
-func ArticlePage(pi int, ps int) ([]*models.Article, error) {
-	articles := make([]*models.Article, 0, ps)
+func ArticlePage(pageNo int, pageSize int) ([]*models.Article, error) {
+	articles := make([]*models.Article, 0, pageSize)
 	sql := "select * from article limit ?,?"
-	err := utils.Db.Select(&articles, sql, (pi-1)*ps, ps)
+	err := utils.Db.Select(&articles, sql, (pageNo-1)*pageSize, pageSize)
 	if err != nil {
 		return nil, err
 	}
