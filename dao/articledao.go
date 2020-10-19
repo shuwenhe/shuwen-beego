@@ -14,3 +14,14 @@ func ArticlePage(pi int, ps int) ([]*models.Article, error) {
 	}
 	return articles, nil
 }
+
+func ArticleCount() (int, error) {
+	var count int
+	sql := "SELECT COUNT(id) as count FROM article"
+	err := utils.Db.Get(&count, sql)
+	if err != nil {
+		utils.NewResult(utils.Fail, err.Error())
+		return 0, err
+	}
+	return count, nil
+}
