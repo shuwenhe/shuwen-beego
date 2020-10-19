@@ -2,8 +2,6 @@ package models
 
 import (
 	"time"
-
-	"github.com/shuwenhe/shuwen-beego/utils"
 )
 
 type Article struct {
@@ -14,11 +12,4 @@ type Article struct {
 	Content string    `json:"content,omitempty"`
 	Hits    string    `json:"hits,omitempty"`
 	Ctime   time.Time `json:"ctime,omitempty"`
-}
-
-func ArticlePage(pi int, ps int) ([]Article, error) {
-	mods := make([]Article, 0, ps)
-	sql := ""
-	utils.Db.Select(&mods, sql)
-
 }
