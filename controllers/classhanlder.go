@@ -106,7 +106,7 @@ func (ctx *ClassController) Get() {
 }
 
 func (ctx *ClassController) Test() {
-	r, _ := ctx.GetInt("p", 123)
+	// r, _ := ctx.GetInt("p", 123)
 	r := ctx.GetString("p")
 	fmt.Println("r = ", r)
 	class, _ := dao.GetClasses()
