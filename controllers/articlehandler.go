@@ -17,9 +17,9 @@ func (ctx *ArticleController) Page() {
 		ctx.ServeJSON()
 		return
 	}
-	pageNo, _ := ctx.GetInt("pageNo")
-	pageSize, _ := ctx.GetInt("pageSize")
-	articles, err := dao.ArticlePage(pageNo, pageSize)
+	pi, _ := ctx.GetInt("pi")
+	ps, _ := ctx.GetInt("ps")
+	articles, err := dao.ArticlePage(pi, ps)
 	if err != nil {
 		ctx.Data["json"] = utils.NewResult(utils.Fail, err.Error())
 		ctx.ServeJSON()

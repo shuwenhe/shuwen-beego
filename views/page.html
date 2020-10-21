@@ -8,23 +8,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <link rel="stylesheet" href="/static/layui/css/layui.css" media="all" />
     <script src="/static/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/script/jquery-1.7.2.js"></script>
   </head>
 
   <body>
+  <div id="ctn">
+  <p></p>
+  </div>
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px"></fieldset>
     <div id="demo0"></div>
+    <div id="naverBar"></div>
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px">
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px">
 
     <script>
+    var laypage;
       layui.use(["laypage", "layer"], function () {
-        var laypage = layui.laypage,
+        laypage = layui.laypage,
           layer = layui.layer;
-        laypage.render({//总页数低于页码总数
-          elem: "demo0",
-          count: 50, //数据总数
-        });
       });
+
+    function init(pi,ps){
+        $.post("/api/article/page",{pi,ps},function(resp){
+          if(resp.code==200){
+            var html="";
+            for(var i=0;i<resp.data.item.length;i++){
+              html+=('<p>'+'<b>'+resp.data.item[i].id+'</b>'+resp.data.item[i].title+'</p>')
+            }
+            document.querySelector("#ctn").innerHTML=html;
+            laypage.render({//总页数低于页码总数
+            elem: "naverBar",
+            count: resp.data.count, //数据总数
+            layout:["prev", "page", "next","skip","count"]
+        });
+          }else{
+            alert("No data found")
+          }
+        })
+      }
+      init(1,2);
     </script>
     
   </body>
