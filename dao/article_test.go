@@ -12,7 +12,7 @@ func testArticlePage(t *testing.T) {
 	}
 }
 
-func TestArticleCount(t *testing.T) {
+func testArticleCount(t *testing.T) {
 	count, _ := ArticleCount()
 	fmt.Println("count = ", count)
 }

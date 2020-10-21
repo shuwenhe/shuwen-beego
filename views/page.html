@@ -38,15 +38,24 @@
             document.querySelector("#ctn").innerHTML=html;
             laypage.render({//总页数低于页码总数
             elem: "naverBar",
+            limit:ps,
             count: resp.data.count, //数据总数
-            layout:["prev", "page", "next","skip","count"]
+            layout:["prev", "page", "next","skip","count"],
+            curr: pi,
+            jump: function(obj,first){
+              console.log(obj.curr);
+              console.log(obj.limit);
+              if(!first){
+                init(obj.curr,obj.limit)
+                }
+            }
         });
           }else{
             alert("No data found")
           }
         })
       }
-      init(1,2);
+      init(1,5);
     </script>
     
   </body>
